@@ -1,0 +1,9 @@
+﻿  Window.cpp
+C:\Users\rajja\source\repos\DirextXGame\Window.cpp(59,21): error C2440: '=': cannot convert from 'const char [14]' to 'LPCWSTR'
+C:\Users\rajja\source\repos\DirextXGame\Window.cpp(59,21): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
+C:\Users\rajja\source\repos\DirextXGame\Window.cpp(60,20): error C2440: '=': cannot convert from 'const char [1]' to 'LPCWSTR'
+C:\Users\rajja\source\repos\DirextXGame\Window.cpp(60,20): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
+C:\Users\rajja\source\repos\DirextXGame\Window.cpp(71,13): error C2664: 'HWND CreateWindowExW(DWORD,LPCWSTR,LPCWSTR,DWORD,int,int,int,int,HWND,HMENU,HINSTANCE,LPVOID)': cannot convert argument 2 from 'const char [14]' to 'LPCWSTR'
+C:\Users\rajja\source\repos\DirextXGame\Window.cpp(71,52): message : Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or parenthesized function-style cast
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um\winuser.h(4437,1): message : see declaration of 'CreateWindowExW'
+C:\Users\rajja\source\repos\DirextXGame\Window.cpp(71,13): message : while trying to match the argument list '(long, const char [14], const char [20], long, int, int, int, int, int, int, int, Window *)'
