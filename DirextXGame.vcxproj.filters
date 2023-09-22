@@ -22,6 +22,9 @@
     <Filter Include="GameEngine\GraphicsEngine\VertexBuffer">
       <UniqueIdentifier>{705bd7cb-cd73-42f4-9404-346504ec018b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\Shapes">
+      <UniqueIdentifier>{32f109b3-8533-46bd-b8ef-ce28bd002623}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -45,6 +48,9 @@
     <ClCompile Include="VertexBuffer.cpp">
       <Filter>GameEngine\GraphicsEngine\VertexBuffer</Filter>
     </ClCompile>
+    <ClCompile Include="Quad.cpp">
+      <Filter>GameEngine\GraphicsEngine\Shapes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -64,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="VertexBuffer.h">
       <Filter>GameEngine\GraphicsEngine\VertexBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Quad.h">
+      <Filter>GameEngine\GraphicsEngine\Shapes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,15 +1,5 @@
 #include "AppWindow.h"
 
-struct vec3
-{
-	float x, y, z;
-};
-
-struct vertex
-{
-	vec3 position;
-};
-
 AppWindow::AppWindow()
 {
 }
@@ -28,25 +18,37 @@ void AppWindow::onCreate()
 	RECT rc = this->getClientWindowRect();
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
-	vertex list[] =
+	Quad::vertex list[] =
 	{
 		//X - Y - Z
-		{-0.5f,-0.5f,0.0f}, // POS1
-		{-0.5f,0.5f,0.0f}, // POS2
-		{ 0.5f,-0.5f,0.0f},
+		{-0.25f,-0.25f,0.0f}, // POS1
+		{-0.25f,0.f,0.0f}, // POS2
+		{0.0f,-0.25f,0.0f},
+		{0.f,0.f,0.0f}
+	};
+
+	Quad::vertex list2[] =
+	{
+		//X - Y - Z
+		{0.25f,0.25f,0.0f}, // POS1
+		{0.25f,0.5f,0.0f}, // POS2
+		{0.5f,0.25f,0.0f},
 		{0.5f,0.5f,0.0f}
 	};
 
-	m_vb = GraphicsEngine::get()->createVertexBuffer();
-	UINT size_list = ARRAYSIZE(list);
-
-	GraphicsEngine::get()->createShaders();
-
-	void* shader_byte_code = nullptr;
-	UINT size_shader = 0;
-	GraphicsEngine::get()->getShaderBufferAndSize(&shader_byte_code, &size_shader);
-
-	m_vb->load(list, sizeof(vertex), size_list, shader_byte_code, size_shader);
+	Quad::vertex list3[] =
+	{
+		//X - Y - Z
+		{-0.25f,0.25f,0.0f}, // POS1
+		{-0.25f,0.5f,0.0f}, // POS2
+		{0.f,0.25f,0.0f},
+		{0.f,0.5f,0.0f}
+	};
+	quad1.onCreate(list[0], list[1], list[2], list[3]);
+	quad2.onCreate(list2[0], list2[1], list2[2], list2[3]);
+	quad3.onCreate(list3[0], list3[1], list3[2], list3[3]);
+	
+	
 
 
 }
@@ -62,18 +64,20 @@ void AppWindow::onUpdate()
 	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 	//SET DEFAULT SHADER IN THE GRAPHICS PIPELINE TO BE ABLE TO DRAW
 	GraphicsEngine::get()->setShaders();
-	//SET THE VERTICES OF THE TRIANGLE TO DRAW
-	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
+	
+	quad1.onRender();
+	quad2.onRender();
+	quad3.onRender();
 
-	// FINALLY DRAW THE TRIANGLE
-	GraphicsEngine::get()->getImmediateDeviceContext()->drawTriangleList(m_vb->getSizeVertexList(), 0);
 	m_swap_chain->present(true);
 }
 
 void AppWindow::onDestroy()
 {
 	Window::onDestroy();
-	m_vb->release();
+	quad1.onDestroy();
+	quad2.onDestroy();
+	quad3.onDestroy();
 	m_swap_chain->release();
 	GraphicsEngine::get()->release();
 }
