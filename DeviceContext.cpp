@@ -1,6 +1,7 @@
 #include "DeviceContext.h"
 #include "SwapChain.h"
 #include "VertexBuffer.h"
+#include "ConstantBuffer.h"
 
 DeviceContext::DeviceContext(ID3D11DeviceContext* device_context) :m_device_context(device_context)
 {
@@ -42,6 +43,27 @@ void DeviceContext::setViewportSize(UINT width, UINT height)
 	vp.MaxDepth = 1.0f;
 	m_device_context->RSSetViewports(1, &vp);
 }
+
+void DeviceContext::setPixelShader(PixelShader* pixel_shader)
+{
+	m_device_context->PSSetShader(pixel_shader->m_ps, nullptr, 0);
+}
+
+void DeviceContext::setVertexShader(VertexShader* vertex_shader)
+{
+	m_device_context->VSSetShader(vertex_shader->m_vs, nullptr, 0);
+}
+
+void DeviceContext::setConstantBuffer(VertexShader* vertex_shader, ConstantBuffer* buffer)
+{
+	m_device_context->VSSetConstantBuffers(0, 1, &buffer->m_buffer);
+}
+
+void DeviceContext::setConstantBuffer(PixelShader* pixel_shader, ConstantBuffer* buffer)
+{
+	m_device_context->PSSetConstantBuffers(0, 1, &buffer->m_buffer);
+}
+
 
 
 bool DeviceContext::release()

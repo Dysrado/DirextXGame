@@ -6,6 +6,8 @@
 #include "DeviceContext.h"
 #include "VertexBuffer.h"
 #include "Quad.h"
+#include "PixelShader.h"
+#include <Windows.h>
 
 class AppWindow : public Window
 {
@@ -22,4 +24,9 @@ private:
 	Quad quad1;
 	Quad quad2;
 	Quad quad3;
+	ConstantBuffer* m_cb;
+	unsigned long m_old_time = 0;
+	float m_delta_time = 0;
+	float m_angle = 0;
+
 };
