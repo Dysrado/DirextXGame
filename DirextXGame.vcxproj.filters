@@ -34,6 +34,9 @@
     <Filter Include="GameEngine\GraphicsEngine\ConstantBuffer">
       <UniqueIdentifier>{4c49e3a6-5d44-4d11-9311-a03ac8959c91}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\EngineTime">
+      <UniqueIdentifier>{ae610a4e-6dbd-4aea-a40d-02d39ce121f0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -69,6 +72,9 @@
     <ClCompile Include="ConstantBuffer.cpp">
       <Filter>GameEngine\GraphicsEngine\ConstantBuffer</Filter>
     </ClCompile>
+    <ClCompile Include="EngineTime.cpp">
+      <Filter>GameEngine\GraphicsEngine\EngineTime</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -100,6 +106,9 @@
     </ClInclude>
     <ClInclude Include="ConstantBuffer.h">
       <Filter>GameEngine\GraphicsEngine\ConstantBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineTime.h">
+      <Filter>GameEngine\GraphicsEngine\EngineTime</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

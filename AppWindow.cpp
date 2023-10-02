@@ -26,32 +26,14 @@ void AppWindow::onCreate()
 		//{0.0f,-0.25f,0.0f,   0,0,1},
 		//{0.f,0.f,0.0f,    1,1,1 }
 
-		{-0.5f,-0.5f,0.0f,    -0.32f,-0.11f,0.0f,   0,0,0,  0,1,0 }, // POS1
-		{-0.5f,0.5f,0.0f,     -0.11f,0.78f,0.0f,    1,1,0,  0,1,1 }, // POS2
-		{ 0.5f,-0.5f,0.0f,     0.75f,-0.73f,0.0f,   0,0,1,  1,0,0 },// POS2
-		{ 0.5f,0.5f,0.0f,      0.88f,0.77f,0.0f,    1,1,1,  0,0,1 }
+		{ -0.4f, -0.45f,    0.0f,  -0.16f, -0.25f, 0.0f,   0, 0, 0,   0, 1, 0}, // POS1 
+		{ -0.45f,  0.2f,    0.0f, -0.11f,  0.36f, 0.0f,   1, 1, 0,   1, 1, 0}, // POS2
+		{  0.45f, -0.15f,    0.0f,   0.37f, -0.77f, 0.0f,   0, 0, 1,   1, 0, 0}, // POS3
+		{  -0.4f, -0.45f,    0.0f,   0.44f,  0.38f, 0.0f,   1, 1, 1,   0, 0, 1}, // POS4 
 	};
 
-	//Quad::vertex list2[] =
-	//{
-	//	//X - Y - Z
-	//	{0.25f,0.25f,0.0f}, // POS1
-	//	{0.25f,0.5f,0.0f}, // POS2
-	//	{0.5f,0.25f,0.0f},
-	//	{0.5f,0.5f,0.0f}
-	//};
-
-	//Quad::vertex list3[] =
-	//{
-	//	//X - Y - Z
-	//	{-0.25f,0.25f,0.0f}, // POS1
-	//	{-0.25f,0.5f,0.0f}, // POS2
-	//	{0.f,0.25f,0.0f},
-	//	{0.f,0.5f,0.0f}
-	//};
 	quad1.onCreate(list[0], list[1], list[2], list[3]);
-	/*quad2.onCreate(list2[0], list2[1], list2[2], list2[3]);
-	quad3.onCreate(list3[0], list3[1], list3[2], list3[3]);*/
+	
 	
 	Quad::constant cc;
 	cc.m_angle = 0;
@@ -71,14 +53,11 @@ void AppWindow::onUpdate()
 	RECT rc = this->getClientWindowRect();
 	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 
-	unsigned long new_time = 0;
-	if (m_old_time)
-		new_time = ::GetTickCount() - m_old_time;
-	m_delta_time = new_time / 1000.0f;
-	m_old_time = ::GetTickCount();
-	m_angle += 1.57f * m_delta_time;
+	
+	m_angle += EngineTime::getDeltaTime();
 	Quad::constant cc;
-	cc.m_angle = m_angle;
+	
+	cc.m_angle = m_angle + ((sin(m_angle / 10.0f) + (m_angle / 10.0f))) * 150.0f;
 
 	m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
 
@@ -86,20 +65,17 @@ void AppWindow::onUpdate()
 	
 
 	//SET DEFAULT SHADER IN THE GRAPHICS PIPELINE TO BE ABLE TO DRAW
-	//GraphicsEngine::get()->setShaders();
 	
-	/*quad2.onRender();
-	quad3.onRender();*/
 
 	m_swap_chain->present(true);
+	EngineTime::LogFrameEnd();
 }
 
 void AppWindow::onDestroy()
 {
 	Window::onDestroy();
 	quad1.onDestroy();
-	/*quad2.onDestroy();
-	quad3.onDestroy();*/
+	
 	m_swap_chain->release();
 	GraphicsEngine::get()->release();
 }

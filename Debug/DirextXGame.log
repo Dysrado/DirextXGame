@@ -1,5 +1,3 @@
 ﻿  AppWindow.cpp
-  Quad.cpp
-  main.cpp
-  Generating Code...
+C:\Users\rajja\source\repos\DirextXGame\AppWindow.cpp(57,37): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
   DirextXGame.vcxproj -> C:\Users\rajja\source\repos\DirextXGame\Debug\DirextXGame.exe
