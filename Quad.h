@@ -1,15 +1,12 @@
 #pragma once
-#include "VertexBuffer.h"
-#include "ConstantBuffer.h"
-#include "GraphicsEngine.h"
-#include "DeviceContext.h"
-#include "PixelShader.h"
+
+#include "AGameObject.h"
 #include <Windows.h>
 
-class Quad
+class Quad : public AGameObject
 {
 public:
-	struct vec3
+	/*struct vec3
 	{
 		float x, y, z;
 	};
@@ -20,23 +17,22 @@ public:
 		vec3 position1;
 		vec3 color;
 		vec3 color1;
-	};
-	__declspec(align(16))
-		struct constant
-	{
-		float m_angle;
-	};
-	VertexBuffer* m_vb;
+	};*/
+	//__declspec(align(16))
+	//	struct constant
+	//{
+	//	float m_angle;
+	//};
+	
 	
 	vertex list[4];
 
 
-	void onCreate(vertex v1, vertex v2, vertex v3, vertex v4);
-	void onRender(ConstantBuffer* m_cb);
-	void onDestroy();
-private:
-	PixelShader* m_ps;
-	VertexShader* m_vs;
+	virtual void onCreate(vertex v1, vertex v2, vertex v3, vertex v4) ;
+	virtual void onRender(ConstantBuffer* m_cb);
+	virtual void onDestroy();
+
+	
 	
 };
 

@@ -5,9 +5,11 @@
 #include "SwapChain.h"
 #include "DeviceContext.h"
 #include "VertexBuffer.h"
-#include "Quad.h"
+#include "IndexBuffer.h"
 #include "PixelShader.h"
 #include <Windows.h>
+#include "Cube.h"
+#include <vector>
 
 class AppWindow : public Window
 {
@@ -21,12 +23,12 @@ public:
 	virtual void onDestroy() override;
 private:
 	SwapChain* m_swap_chain;
-	Quad quad1;
-	Quad quad2;
-	Quad quad3;
+	std::vector<Cube*> cubeList;
+	
 	ConstantBuffer* m_cb;
-	unsigned long m_old_time = 0;
-	float m_delta_time = 0;
-	float m_angle = 0;
+	
+	float deltaTime = 0.0f;
+	PixelShader* m_ps;
+	VertexShader* m_vs;
 
 };

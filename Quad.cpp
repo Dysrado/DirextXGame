@@ -43,9 +43,4 @@ void Quad::onCreate(vertex v1, vertex v2, vertex v3, vertex v4)
 	
 }
 
-void Quad::onDestroy()
-{
-	m_vb->release();
-	m_vs->release();
-	m_ps->release();
-}
+

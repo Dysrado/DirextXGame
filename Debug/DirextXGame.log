@@ -1,3 +1,9 @@
 ﻿  AppWindow.cpp
-C:\Users\rajja\source\repos\DirextXGame\AppWindow.cpp(57,37): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+C:\Users\rajja\source\repos\DirextXGame\AppWindow.cpp(33,57): warning C4316: 'Cube': object allocated on the heap may not be aligned 16
+C:\Users\rajja\source\repos\DirextXGame\AppWindow.cpp(34,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\rajja\source\repos\DirextXGame\AppWindow.cpp(140,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\rajja\source\repos\DirextXGame\AppWindow.cpp(141,49): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\rajja\source\repos\DirextXGame\AppWindow.cpp(158,20): warning C4018: '<': signed/unsigned mismatch
+  main.cpp
+  Generating Code...
   DirextXGame.vcxproj -> C:\Users\rajja\source\repos\DirextXGame\Debug\DirextXGame.exe

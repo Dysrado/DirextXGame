@@ -1,41 +1,37 @@
 #include "EngineTime.h"
-EngineTime* EngineTime::sharedInstance = nullptr;
-void EngineTime::initialize()
-{// If there is no instance of class
-    // then we can create an instance.
-    if (sharedInstance == nullptr)
-    {
-        // We can access private members
-        // within the class.
-        EngineTime::sharedInstance = new EngineTime();
 
-        // returning the instance pointer
-    }
-    LogFrameStart();
-    LogFrameEnd();
-    
+EngineTime* EngineTime::sharedInstance = nullptr;
+
+void EngineTime::initialize()
+{
+	sharedInstance = new EngineTime();
 }
 
 double EngineTime::getDeltaTime()
 {
-	return std::chrono::duration_cast<std::chrono::microseconds>(EngineTime::sharedInstance->start - EngineTime::sharedInstance->end).count() / 1000000.0f;
-}
-
-EngineTime::EngineTime()
-{
-}
-
-EngineTime::~EngineTime()
-{
-    delete this;
+	return sharedInstance->deltaTime;
 }
 
 void EngineTime::LogFrameStart()
 {
-    EngineTime::sharedInstance->start = std::chrono::system_clock::now();
+	sharedInstance->start = std::chrono::system_clock::now();
 }
 
 void EngineTime::LogFrameEnd()
 {
-    EngineTime::sharedInstance->end = std::chrono::system_clock::now();
+	sharedInstance->end = std::chrono::system_clock::now();
+	const std::chrono::duration<double> elapsed_seconds = sharedInstance->end - sharedInstance->start;
+
+	sharedInstance->deltaTime = elapsed_seconds.count();
 }
+
+EngineTime::EngineTime()
+{
+
+}
+
+EngineTime::~EngineTime()
+{
+
+}
+
