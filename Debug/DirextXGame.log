@@ -1,9 +1,11 @@
 ﻿  AppWindow.cpp
-C:\Users\rajja\source\repos\DirextXGame\AppWindow.cpp(33,57): warning C4316: 'Cube': object allocated on the heap may not be aligned 16
-C:\Users\rajja\source\repos\DirextXGame\AppWindow.cpp(34,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\rajja\source\repos\DirextXGame\AppWindow.cpp(140,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\rajja\source\repos\DirextXGame\AppWindow.cpp(141,49): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\rajja\source\repos\DirextXGame\AppWindow.cpp(158,20): warning C4018: '<': signed/unsigned mismatch
-  main.cpp
-  Generating Code...
-  DirextXGame.vcxproj -> C:\Users\rajja\source\repos\DirextXGame\Debug\DirextXGame.exe
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(36,57): warning C4316: 'Cube': object allocated on the heap may not be aligned 16
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(37,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(62,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(63,49): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(162,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(177,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(178,56): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(183,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(184,56): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  DirextXGame.vcxproj -> C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\Debug\DirextXGame.exe

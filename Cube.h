@@ -9,6 +9,7 @@ public:
 	void onDestroy() override;
 	void onUpdate(float deltaTime) override;
 	void setAnimSpeed(float speed);
+	void addMovement(bool direction, float deltaTime);
 private:
 	float ticks = 0.0f;
 	float speedFactor = 0.0f;

@@ -12,10 +12,13 @@ AppWindow::~AppWindow()
 
 void AppWindow::onCreate()
 {
+
 	std::random_device rd;
 	std::uniform_int_distribution<int> distint(1, 10);
 	std::uniform_real_distribution<float> distfloat(-1.0f, 1.0f);
 	Window::onCreate();
+	InputSystem::initialize();
+	InputSystem::getInstance()->addListener(this);
 	GraphicsEngine::get()->init();
 	m_swap_chain = GraphicsEngine::get()->createSwapChain();
 	EngineTime::initialize();
@@ -48,13 +51,25 @@ void AppWindow::onCreate()
 
 void AppWindow::onUpdate()
 {
-
+	InputSystem::getInstance()->update();
 
 	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(m_swap_chain, 0.2f, 0.2f, 0.2f, 1);
 
 	RECT rc = getClientWindowRect();
 	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
 
+
+	for (int i = 0; i < cubeList.size(); i++) {
+		cubeList[i]->onUpdate(EngineTime::getDeltaTime());
+		cubeList[i]->onRender(rc.right - rc.left, rc.bottom - rc.top, m_vs, m_ps);
+	}
+
+
+	//SET DEFAULT SHADER IN THE GRAPHICS PIPELINE TO BE ABLE TO DRAW
+
+
+	m_swap_chain->present(true);
+	EngineTime::LogFrameEnd();
 
 	/*AGameObject::constant cc;
 	Matrix4x4 temp;
@@ -137,17 +152,6 @@ void AppWindow::onUpdate()
 
 	//quad1.onRender(m_cb);
 	
-	for (int i = 0; i < cubeList.size(); i++) {
-		cubeList[i]->onUpdate(EngineTime::getDeltaTime());
-		cubeList[i]->onRender(rc.right - rc.left, rc.bottom - rc.top, m_vs, m_ps);
-	}
-	
-
-	//SET DEFAULT SHADER IN THE GRAPHICS PIPELINE TO BE ABLE TO DRAW
-	
-
-	m_swap_chain->present(true);
-	EngineTime::LogFrameEnd();
 }
 
 void AppWindow::onDestroy()
@@ -160,4 +164,45 @@ void AppWindow::onDestroy()
 	}
 	m_swap_chain->release();
 	GraphicsEngine::get()->release();
+}
+
+void AppWindow::onKeyUp(int key)
+{
+	
+}
+
+void AppWindow::onKeyDown(int key)
+{
+	if (key == 'W') {
+		for (int i = 0; i < cubeList.size(); i++) {
+			cubeList[i]->addMovement(0, EngineTime::getDeltaTime());
+		}
+		std::cout << "Adding forwards" << std::endl;
+	}
+	else if (key == 'S') {
+		for (int i = 0; i < cubeList.size(); i++) {
+			cubeList[i]->addMovement(1, EngineTime::getDeltaTime());
+		}
+		std::cout << "Adding backwards" << std::endl;
+	}
+}
+
+void AppWindow::onMouseMove(const Point deltaPos)
+{
+}
+
+void AppWindow::onLeftMouseDown(const Point deltaPos)
+{
+}
+
+void AppWindow::onLeftMouseUp(const Point deltaPos)
+{
+}
+
+void AppWindow::onRightMouseDown(const Point deltaPos)
+{
+}
+
+void AppWindow::onRightMouseUp(const Point deltaPos)
+{
 }

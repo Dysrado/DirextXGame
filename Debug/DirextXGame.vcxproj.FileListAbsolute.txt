@@ -1,1 +1,2 @@
 C:\Users\rajja\source\repos\DirextXGame\Debug\DirextXGame.exe
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\Debug\DirextXGame.exe

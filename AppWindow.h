@@ -10,8 +10,10 @@
 #include <Windows.h>
 #include "Cube.h"
 #include <vector>
+#include "InputListener.h"
+#include "InputSystem.h"
 
-class AppWindow : public Window
+class AppWindow : public Window, public InputListener
 {
 public:
 	AppWindow();
@@ -30,5 +32,21 @@ private:
 	float deltaTime = 0.0f;
 	PixelShader* m_ps;
 	VertexShader* m_vs;
+
+
+	// Inherited via InputListener
+	virtual void onKeyUp(int key) override;
+
+	virtual void onKeyDown(int key) override;
+
+	virtual void onMouseMove(const Point deltaPos) override;
+
+	virtual void onLeftMouseDown(const Point deltaPos) override;
+
+	virtual void onLeftMouseUp(const Point deltaPos) override;
+
+	virtual void onRightMouseDown(const Point deltaPos) override;
+
+	virtual void onRightMouseUp(const Point deltaPos) override;
 
 };

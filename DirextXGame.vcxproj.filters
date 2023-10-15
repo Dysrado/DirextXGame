@@ -46,6 +46,9 @@
     <Filter Include="GameEngine\GraphicsEngine\Shapes\AGameObject">
       <UniqueIdentifier>{9c54de8f-9ab5-4fa5-8610-c21c86796778}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\InputSystem">
+      <UniqueIdentifier>{a2015e5d-d0fb-4ea4-9601-7b8f31e694fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -90,9 +93,19 @@
     <ClCompile Include="AGameObject.cpp">
       <Filter>GameEngine\GraphicsEngine\Shapes\AGameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Matrix4x4.cpp" />
-    <ClCompile Include="Vector3D.cpp" />
     <ClCompile Include="Utilities.cpp">
+      <Filter>GameEngine\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="InputSystem.cpp">
+      <Filter>GameEngine\GraphicsEngine\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Point.cpp">
+      <Filter>GameEngine\GraphicsEngine\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Matrix4x4.cpp">
+      <Filter>GameEngine\Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="Vector3D.cpp">
       <Filter>GameEngine\Utilities</Filter>
     </ClCompile>
   </ItemGroup>
@@ -136,9 +149,22 @@
     <ClInclude Include="AGameObject.h">
       <Filter>GameEngine\GraphicsEngine\Shapes\AGameObject</Filter>
     </ClInclude>
-    <ClInclude Include="Matrix4x4.h" />
-    <ClInclude Include="Vector3D.h" />
     <ClInclude Include="Utilities.h">
+      <Filter>GameEngine\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="InputSystem.h">
+      <Filter>GameEngine\GraphicsEngine\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="InputListener.h">
+      <Filter>GameEngine\GraphicsEngine\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Point.h">
+      <Filter>GameEngine\GraphicsEngine\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix4x4.h">
+      <Filter>GameEngine\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector3D.h">
       <Filter>GameEngine\Utilities</Filter>
     </ClInclude>
   </ItemGroup>

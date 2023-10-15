@@ -43,7 +43,7 @@ Cube ::Cube (std::string name, void* shader_byte_code, size_t size_shader) : AGa
 	
 	
 	
-	std::cout << "Size of ver list: " << sizeof(vertex_list) << std::endl;
+	//std::cout << "Size of ver list: " << sizeof(vertex_list) << std::endl;
 	m_vb = GraphicsEngine::get()->createVertexBuffer();
 	UINT const size_list = ARRAYSIZE(vertex_list);
 
@@ -76,10 +76,19 @@ void Cube::setAnimSpeed(float speed)
 	this->speed = speed;
 }
 
+void Cube::addMovement(bool direction, float deltaTime)
+{
+	if (direction) {
+		ticks += speed * deltaTime;
+	}
+	else {
+		
+		ticks -= speed * deltaTime;
+	}
+}
+
 void Cube::onRender(int width, int height, VertexShader* vertexShader, PixelShader* pixelShader)
 {
-	
-	
 
 	cc.viewMatrix.setIdentity();
 	cc.projMatrix.setOrthoLH
@@ -103,7 +112,7 @@ void Cube::onRender(int width, int height, VertexShader* vertexShader, PixelShad
 	//SET THE CONSTANT BUFFERS
 	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(vertexShader, m_cb);
 	GraphicsEngine::get()->getImmediateDeviceContext()->setConstantBuffer(pixelShader, m_cb);
-	std::cout << "index buffer size: " << m_ib->getSizeIndexList() << std::endl;
+	//std::cout << "index buffer size: " << m_ib->getSizeIndexList() << std::endl;
 	// FINALLY DRAW THE TRIANGLE
 	GraphicsEngine::get()->getImmediateDeviceContext()->drawIndexedTriangleList(m_ib->getSizeIndexList(), 0, 0);
 }
@@ -114,21 +123,22 @@ void Cube::onDestroy()
 
 void Cube::onUpdate(float deltaTime)
 {
-	ticks += deltaTime;
+
+	//ticks += deltaTime;
 	Matrix4x4 temp;
 
 	cc.worldMatrix.setScale(Vector3D(1.0f, 1.0f, 1.0f));
 
 	temp.setIdentity();
-	temp.setRotationZ(ticks * speed);
+	temp.setRotationZ(0.0f);
 	cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
 
 	temp.setIdentity();
-	temp.setRotationY(ticks * speed);
+	temp.setRotationY(ticks);
 	cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
 
 	temp.setIdentity();
-	temp.setRotationX(ticks * speed);
+	temp.setRotationX(ticks);
 	cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
 
 
@@ -139,4 +149,6 @@ void Cube::onUpdate(float deltaTime)
 	cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
 	
 }
+
+
 
