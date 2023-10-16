@@ -12,6 +12,7 @@
 #include <vector>
 #include "InputListener.h"
 #include "InputSystem.h"
+#include "SceneCameraHandler.h"
 
 class AppWindow : public Window, public InputListener
 {
@@ -32,6 +33,9 @@ private:
 	float deltaTime = 0.0f;
 	PixelShader* m_ps;
 	VertexShader* m_vs;
+
+	bool isForward = false;
+	bool isBackward = false;
 
 
 	// Inherited via InputListener

@@ -29,6 +29,23 @@ Vector3D::Vect Vector3D::getValues() const
 	return vect;
 }
 
+float Vector3D::getX() const
+{
+	return this->x;
+}
+
+float Vector3D::getY() const
+{
+	return this->y;
+}
+
+float Vector3D::getZ() const
+{
+	return this->z;
+}
+
+
+
 Vector3D Vector3D::lerp(const Vector3D start, const Vector3D end, float delta)
 {
 	Vector3D v;

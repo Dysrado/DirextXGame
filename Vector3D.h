@@ -15,6 +15,9 @@ public:
 	};
 
 	Vector3D::Vect getValues() const;
+	float getX() const;
+	float getY() const;
+	float getZ() const;
 
 	static Vector3D lerp(const Vector3D start, const Vector3D end, float delta);
 	static Vector3D zeros() { Vector3D v; v = Vector3D(0, 0, 0); return v; };

@@ -73,6 +73,7 @@ public:
 	bool isIncreasing = true;
 
 protected:
+	Matrix4x4 localMatrix;
 	std::string name;
 	Vector3D localRotation;
 	Vector3D localPosition;

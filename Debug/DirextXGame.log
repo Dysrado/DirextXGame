@@ -1,11 +1,6 @@
-﻿  AppWindow.cpp
-C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(36,57): warning C4316: 'Cube': object allocated on the heap may not be aligned 16
-C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(37,29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(62,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(63,49): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(162,20): warning C4018: '<': signed/unsigned mismatch
-C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(177,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(178,56): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(183,21): warning C4018: '<': signed/unsigned mismatch
-C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\AppWindow.cpp(184,56): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  DirextXGame.vcxproj -> C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\Debug\DirextXGame.exe
+﻿  Matrix4x4.cpp
+C:\Users\rajja\source\repos\DirextXGame\Matrix4x4.cpp(129,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\rajja\source\repos\DirextXGame\Matrix4x4.cpp(130,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\rajja\source\repos\DirextXGame\Matrix4x4.cpp(131,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\rajja\source\repos\DirextXGame\Matrix4x4.cpp(132,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  DirextXGame.vcxproj -> C:\Users\rajja\source\repos\DirextXGame\Debug\DirextXGame.exe

@@ -18,6 +18,8 @@ void AppWindow::onCreate()
 	std::uniform_real_distribution<float> distfloat(-1.0f, 1.0f);
 	Window::onCreate();
 	InputSystem::initialize();
+	//SceneCameraHandler::initialize();
+
 	InputSystem::getInstance()->addListener(this);
 	GraphicsEngine::get()->init();
 	m_swap_chain = GraphicsEngine::get()->createSwapChain();
@@ -30,12 +32,12 @@ void AppWindow::onCreate()
 	GraphicsEngine::get()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
 	m_vs = GraphicsEngine::get()->createVertexShader(shader_byte_code, size_shader);
 
-	for (int i = 0; i < 9; i++) {
+	for (int i = 0; i < 1; i++) {
 		
 		Cube* cube;
 		cube = new Cube("NICE", shader_byte_code, size_shader);
-		cube->setAnimSpeed(distint(rd));
-		cube->SetScale(Vector3D(0.5, 0.5, 0.5));
+		cube->setAnimSpeed(100);
+		cube->SetScale(Vector3D(1,1,1));
 		cube->SetPosition(distfloat(rd), distfloat(rd), distfloat(rd));
 		cubeList.push_back(cube);
 	}
@@ -52,11 +54,22 @@ void AppWindow::onCreate()
 void AppWindow::onUpdate()
 {
 	InputSystem::getInstance()->update();
-
+	//SceneCameraHandler::getInstance()->update(EngineTime::getDeltaTime());
 	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(m_swap_chain, 0.2f, 0.2f, 0.2f, 1);
 
 	RECT rc = getClientWindowRect();
 	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
+	if (isForward && !isBackward) {
+		for (int i = 0; i < cubeList.size(); i++) {
+			cubeList[i]->addMovement(0, EngineTime::getDeltaTime());
+		}
+	}
+	else if (!isForward && isBackward) {
+		for (int i = 0; i < cubeList.size(); i++) {
+			cubeList[i]->addMovement(1, EngineTime::getDeltaTime());
+		}
+	}
+
 
 
 	for (int i = 0; i < cubeList.size(); i++) {
@@ -168,22 +181,21 @@ void AppWindow::onDestroy()
 
 void AppWindow::onKeyUp(int key)
 {
-	
+	if (key == 'W') {
+		isForward = false;
+	}
+	else if (key == 'S') {
+		isBackward = false;
+	}
 }
 
 void AppWindow::onKeyDown(int key)
 {
 	if (key == 'W') {
-		for (int i = 0; i < cubeList.size(); i++) {
-			cubeList[i]->addMovement(0, EngineTime::getDeltaTime());
-		}
-		std::cout << "Adding forwards" << std::endl;
+		isForward = true;
 	}
 	else if (key == 'S') {
-		for (int i = 0; i < cubeList.size(); i++) {
-			cubeList[i]->addMovement(1, EngineTime::getDeltaTime());
-		}
-		std::cout << "Adding backwards" << std::endl;
+		isBackward = true;
 	}
 }
 

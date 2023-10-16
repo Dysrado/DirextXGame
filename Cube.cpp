@@ -1,4 +1,5 @@
 #include "Cube.h"
+#include "SceneCameraHandler.h"
 
 Cube ::Cube (std::string name, void* shader_byte_code, size_t size_shader) : AGameObject(name)
 {
@@ -64,7 +65,6 @@ Cube ::Cube (std::string name, void* shader_byte_code, size_t size_shader) : AGa
 	m_cb = GraphicsEngine::get()->createConstantBuffer();
 	m_cb->load(&cc, sizeof(AGameObject::constant)); // load initial value and format
 	
-
 }
 
 Cube::~Cube()
@@ -91,6 +91,7 @@ void Cube::onRender(int width, int height, VertexShader* vertexShader, PixelShad
 {
 
 	cc.viewMatrix.setIdentity();
+	
 	cc.projMatrix.setOrthoLH
 	(
 		width / 300.0f,
@@ -98,8 +99,15 @@ void Cube::onRender(int width, int height, VertexShader* vertexShader, PixelShad
 		-4.0f,
 		4.0f
 	);
-	m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
 
+	//cc.projMatrix.setPerspectiveFovLH(1.57f, (float)width/height,0.1f, 100.0f);
+
+	/*Matrix4x4 cameraMatrix = SceneCameraHandler::getInstance()->getSceneCameraViewMatrix();
+	cc.viewMatrix = cameraMatrix;*/
+	//std::cout << "VIEW MATRIX OF CUBe\n";
+	//cc.viewMatrix.debugPrint();
+
+	m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);
 
 	//SET THE VERTICES OF THE TRIANGLE TO DRAW
 	GraphicsEngine::get()->getImmediateDeviceContext()->setVertexBuffer(m_vb);
@@ -129,6 +137,10 @@ void Cube::onUpdate(float deltaTime)
 
 	cc.worldMatrix.setScale(Vector3D(1.0f, 1.0f, 1.0f));
 
+	
+	
+
+
 	temp.setIdentity();
 	temp.setRotationZ(0.0f);
 	cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
@@ -141,13 +153,19 @@ void Cube::onUpdate(float deltaTime)
 	temp.setRotationX(ticks);
 	cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
 
-
+	temp.setIdentity();
 	temp.setScale(localScale);
 	cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
 
+
+	temp.setIdentity();
 	temp.setTranslation(localPosition);
 	cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
 	
+
+	
+
+
 }
 
 
