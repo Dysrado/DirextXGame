@@ -1,36 +1,41 @@
 #include "SceneCameraHandler.h"
-SceneCameraHandler* SceneCameraHandler::sharedInstance = nullptr;
+#include "EngineTime.h"
+
+SceneCameraHandler* SceneCameraHandler::sharedInstance = NULL;
 SceneCameraHandler* SceneCameraHandler::getInstance()
 {
 	return sharedInstance;
 }
 
-void SceneCameraHandler::initialize()
+void SceneCameraHandler::initialize(int width, int height)
 {
-	sharedInstance = new SceneCameraHandler();
-	
+	sharedInstance = new SceneCameraHandler(width, height);
 }
 
 void SceneCameraHandler::destroy()
 {
-	delete sharedInstance;
 }
 
-void SceneCameraHandler::update(float deltaTime)
+void SceneCameraHandler::update()
 {
-	sceneCamera->onUpdate(deltaTime);
+	sceneCamera->onUpdate(EngineTime::getDeltaTime());
+
+}
+
+void SceneCameraHandler::moveCamera(float x, float y)
+{
+	sceneCamera->addLocalRot(x, y);
+
 }
 
 Matrix4x4 SceneCameraHandler::getSceneCameraViewMatrix()
 {
-
 	return sceneCamera->getViewMatrix();
 }
 
-SceneCameraHandler::SceneCameraHandler()
+SceneCameraHandler::SceneCameraHandler(int width, int height)
 {
-	sceneCamera = new Camera("Cam1");
-
+	sceneCamera = new Camera("Cam", width, height);
 }
 
 SceneCameraHandler::~SceneCameraHandler()

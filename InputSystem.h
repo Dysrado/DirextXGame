@@ -24,7 +24,7 @@ public:
 	// Global methods for checking key input status
 	bool isKeyDown(int key);
 	bool isKeyUp(int key);
-
+	void setCursorPosition(const Point& pos);
 private:
 	static InputSystem* sharedInstance;
 

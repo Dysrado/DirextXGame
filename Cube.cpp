@@ -92,18 +92,18 @@ void Cube::onRender(int width, int height, VertexShader* vertexShader, PixelShad
 
 	cc.viewMatrix.setIdentity();
 	
-	cc.projMatrix.setOrthoLH
+	/*cc.projMatrix.setOrthoLH
 	(
 		width / 300.0f,
 		height / 300.0f,
 		-4.0f,
 		4.0f
-	);
+	);*/
 
 	//cc.projMatrix.setPerspectiveFovLH(1.57f, (float)width/height,0.1f, 100.0f);
-
-	/*Matrix4x4 cameraMatrix = SceneCameraHandler::getInstance()->getSceneCameraViewMatrix();
-	cc.viewMatrix = cameraMatrix;*/
+	cc.projMatrix.setPerspectiveFovLH(1.57f, ((float)width / (float)height), 0.1f, 100.0f);
+	Matrix4x4 cameraMatrix = SceneCameraHandler::getInstance()->getSceneCameraViewMatrix();
+	cc.viewMatrix = cameraMatrix;
 	//std::cout << "VIEW MATRIX OF CUBe\n";
 	//cc.viewMatrix.debugPrint();
 
@@ -136,31 +136,26 @@ void Cube::onUpdate(float deltaTime)
 	Matrix4x4 temp;
 
 	cc.worldMatrix.setScale(Vector3D(1.0f, 1.0f, 1.0f));
-
+	temp.setScale(localScale);
+	cc.worldMatrix *= temp;
 	
-	
-
 
 	temp.setIdentity();
 	temp.setRotationZ(0.0f);
-	cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
+	cc.worldMatrix *= temp;
 
 	temp.setIdentity();
 	temp.setRotationY(ticks);
-	cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
+	cc.worldMatrix *= temp;
 
 	temp.setIdentity();
 	temp.setRotationX(ticks);
-	cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
-
-	temp.setIdentity();
-	temp.setScale(localScale);
-	cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
+	cc.worldMatrix *= temp;
 
 
 	temp.setIdentity();
 	temp.setTranslation(localPosition);
-	cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
+	cc.worldMatrix *= temp;
 	
 
 	

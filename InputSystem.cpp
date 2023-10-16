@@ -138,6 +138,11 @@ bool InputSystem::isKeyUp(int key)
 	return false;
 }
 
+void InputSystem::setCursorPosition(const Point& pos)
+{
+	::SetCursorPos(pos.getX(), pos.getY());
+}
+
 void InputSystem::callOnKeyDown(int key)
 {
 	for (int i = 0; i < this->inputListenerList.size(); i++) {

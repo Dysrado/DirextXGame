@@ -18,13 +18,13 @@ void AppWindow::onCreate()
 	std::uniform_real_distribution<float> distfloat(-1.0f, 1.0f);
 	Window::onCreate();
 	InputSystem::initialize();
-	//SceneCameraHandler::initialize();
 
 	InputSystem::getInstance()->addListener(this);
 	GraphicsEngine::get()->init();
 	m_swap_chain = GraphicsEngine::get()->createSwapChain();
 	EngineTime::initialize();
 	RECT rc = this->getClientWindowRect();
+	SceneCameraHandler::initialize(rc.right - rc.left, rc.bottom - rc.top);
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 
 	void* shader_byte_code = nullptr;
@@ -32,33 +32,39 @@ void AppWindow::onCreate()
 	GraphicsEngine::get()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
 	m_vs = GraphicsEngine::get()->createVertexShader(shader_byte_code, size_shader);
 
-	for (int i = 0; i < 1; i++) {
+	for (int i = 0; i < 10; i++) {
 		
 		Cube* cube;
 		cube = new Cube("NICE", shader_byte_code, size_shader);
 		cube->setAnimSpeed(100);
-		cube->SetScale(Vector3D(1,1,1));
-		cube->SetPosition(distfloat(rd), distfloat(rd), distfloat(rd));
+		cube->SetScale(Vector3D(0.5, 0.5, 0.5));
+		cube->SetPosition(distfloat(rd), distfloat(rd), 3);
 		cubeList.push_back(cube);
 	}
-
+	GraphicsEngine::get()->releaseCompiledShader();
 	
 
 	GraphicsEngine::get()->compilePixelShader(L"PixelShader.hlsl", "psmain", &shader_byte_code, &size_shader);
 	m_ps = GraphicsEngine::get()->createPixelShader(shader_byte_code, size_shader);
 	GraphicsEngine::get()->releaseCompiledShader();
-	GraphicsEngine::get()->releaseCompiledShader();
+	int width = (this->getClientWindowRect().right - this->getClientWindowRect().left);
+	int height = (this->getClientWindowRect().bottom - this->getClientWindowRect().top);
+
+	InputSystem::getInstance()->setCursorPosition(Point((int)(width / 2.0f), (int)(height / 2.0f)));
 
 }
 
 void AppWindow::onUpdate()
 {
 	InputSystem::getInstance()->update();
-	//SceneCameraHandler::getInstance()->update(EngineTime::getDeltaTime());
 	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(m_swap_chain, 0.2f, 0.2f, 0.2f, 1);
 
 	RECT rc = getClientWindowRect();
 	GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
+	
+	SceneCameraHandler::getInstance()->update();
+
+	
 	if (isForward && !isBackward) {
 		for (int i = 0; i < cubeList.size(); i++) {
 			cubeList[i]->addMovement(0, EngineTime::getDeltaTime());
@@ -69,8 +75,6 @@ void AppWindow::onUpdate()
 			cubeList[i]->addMovement(1, EngineTime::getDeltaTime());
 		}
 	}
-
-
 
 	for (int i = 0; i < cubeList.size(); i++) {
 		cubeList[i]->onUpdate(EngineTime::getDeltaTime());
@@ -201,6 +205,8 @@ void AppWindow::onKeyDown(int key)
 
 void AppWindow::onMouseMove(const Point deltaPos)
 {
+	
+
 }
 
 void AppWindow::onLeftMouseDown(const Point deltaPos)

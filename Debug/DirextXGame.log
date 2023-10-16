@@ -1,6 +1,8 @@
-﻿  Matrix4x4.cpp
-C:\Users\rajja\source\repos\DirextXGame\Matrix4x4.cpp(129,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\rajja\source\repos\DirextXGame\Matrix4x4.cpp(130,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\rajja\source\repos\DirextXGame\Matrix4x4.cpp(131,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-C:\Users\rajja\source\repos\DirextXGame\Matrix4x4.cpp(132,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+﻿  Camera.cpp
+C:\Users\rajja\source\repos\DirextXGame\Matrix4x4.h(103,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\rajja\source\repos\DirextXGame\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\rajja\source\repos\DirextXGame\Matrix4x4.h(105,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\rajja\source\repos\DirextXGame\Matrix4x4.h(106,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\rajja\source\repos\DirextXGame\Camera.cpp(104,39): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+C:\Users\rajja\source\repos\DirextXGame\Camera.cpp(105,39): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
   DirextXGame.vcxproj -> C:\Users\rajja\source\repos\DirextXGame\Debug\DirextXGame.exe
