@@ -14,6 +14,9 @@ public:
 
 	//Release the swap chain
 	bool release();
+
+	ID3D11RenderTargetView* getRenderTargetView();
+	ID3D11DepthStencilView* getDepthStencilView();
 	~SwapChain();
 private:
 	IDXGISwapChain* m_swap_chain;

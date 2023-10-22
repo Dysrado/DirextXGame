@@ -39,4 +39,5 @@ public:
 
 	int width;
 	int height;
+	bool isDrag;
 };

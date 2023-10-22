@@ -15,7 +15,7 @@ void AppWindow::onCreate()
 
 	std::random_device rd;
 	std::uniform_int_distribution<int> distint(1, 10);
-	std::uniform_real_distribution<float> distfloat(-1.0f, 1.0f);
+	std::uniform_real_distribution<float> distfloat(-0.5f, 0.5f);
 	Window::onCreate();
 	InputSystem::initialize();
 
@@ -32,15 +32,35 @@ void AppWindow::onCreate()
 	GraphicsEngine::get()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
 	m_vs = GraphicsEngine::get()->createVertexShader(shader_byte_code, size_shader);
 
-	for (int i = 0; i < 10; i++) {
+	for (int i = 0; i < 3; i++) {
 		
 		Cube* cube;
-		cube = new Cube("NICE", shader_byte_code, size_shader);
-		cube->setAnimSpeed(100);
-		cube->SetScale(Vector3D(0.5, 0.5, 0.5));
-		cube->SetPosition(distfloat(rd), distfloat(rd), 3);
+		cube = new Cube("Cube " + i, shader_byte_code, size_shader);
+		cube->setAnimSpeed(0);
+		cube->SetScale(Vector3D(1,1,1));
+		switch (i) {
+			case 0:
+				cube->SetPosition(Vector3D(-1.5, 1, -3.0f));
+				break;
+			case 1:
+				cube->SetPosition(Vector3D(0, 1, 0));
+				break;
+			case 2:
+				cube->SetPosition(Vector3D(2.6, 1, 2.0f));
+				break;
+		}
+		//cube->SetPosition(Vector3D(1,1,0));
+		//cube->SetPosition(distfloat(rd), distfloat(rd), distfloat(rd));
 		cubeList.push_back(cube);
 	}
+
+	
+	
+	cube1 = new Cube("Plane", shader_byte_code, size_shader);
+	cube1->setAnimSpeed(0);
+	cube1->SetScale(Vector3D(6, 0.1, 6));
+	cube1->SetPosition(Vector3D(0, 0, 0));
+	//isForward = true;
 	GraphicsEngine::get()->releaseCompiledShader();
 	
 
@@ -65,7 +85,7 @@ void AppWindow::onUpdate()
 	SceneCameraHandler::getInstance()->update();
 
 	
-	if (isForward && !isBackward) {
+	if (isForward && !isBackward ) {
 		for (int i = 0; i < cubeList.size(); i++) {
 			cubeList[i]->addMovement(0, EngineTime::getDeltaTime());
 		}
@@ -81,93 +101,16 @@ void AppWindow::onUpdate()
 		cubeList[i]->onRender(rc.right - rc.left, rc.bottom - rc.top, m_vs, m_ps);
 	}
 
-
+	
+	cube1->onUpdate(EngineTime::getDeltaTime());
+	cube1->onRender(rc.right - rc.left, rc.bottom - rc.top, m_vs, m_ps);
+	
 	//SET DEFAULT SHADER IN THE GRAPHICS PIPELINE TO BE ABLE TO DRAW
-
 
 	m_swap_chain->present(true);
 	EngineTime::LogFrameEnd();
 
-	/*AGameObject::constant cc;
-	Matrix4x4 temp;
-
-	cc.worldMatrix.setScale(Vector3D(1.0f, 1.0f, 1.0f));
-
-	temp.setIdentity();
-	temp.setRotationZ(ticks);
-	cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
-
-	temp.setIdentity();
-	temp.setRotationY(ticks);
-	cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
-
-	temp.setIdentity();
-	temp.setRotationX(ticks);
-	cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
-
-
-	cc.viewMatrix.setIdentity();
-	cc.projMatrix.setOrthoLH
-	(
-		(rc.right - rc.left) / 300.0f,
-		(rc.bottom - rc.top) / 300.0f,
-		-4.0f,
-		4.0f
-	);
-
-
-	cc.m_time = this->ticks;*/
-
-	//std::cout << "m_time: " << cc.m_time << "\n";
-	//std::cout << "sin(m_time): " << (std::sin(cc.m_time) + 1) / 2 << "\n";
-
-	/*m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);*/
-	//Window::onUpdate();
-	////CLEAR THE RENDER TARGET 
-	//GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(this->m_swap_chain,
-	//	0, 0.3f, 0.4f, 1);
-	////SET VIEWPORT OF RENDER TARGET IN WHICH WE HAVE TO DRAW
-	//RECT rc = this->getClientWindowRect();
-	//GraphicsEngine::get()->getImmediateDeviceContext()->setViewportSize(rc.right - rc.left, rc.bottom - rc.top);
-
-	//
-	//m_angle += EngineTime::getDeltaTime();
-	//AGameObject::constant cc;
-	//
-	//Matrix4x4 temp;
-
-	//cc.worldMatrix.setScale(Vector3D(1.0f, 1.0f, 1.0f));
-
-	//temp.setIdentity();
-	//temp.setRotationZ(ticks);
-	//cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
-
-	//temp.setIdentity();
-	//temp.setRotationY(ticks);
-	//cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
-
-	//temp.setIdentity();
-	//temp.setRotationX(ticks);
-	//cc.worldMatrix = cc.worldMatrix.multiplyTo(temp);
-
-
-	//cc.viewMatrix.setIdentity();
-	//cc.projMatrix.setOrthoLH
-	//(
-	//	(rc.right - rc.left) / 300.0f,
-	//	(rc.bottom - rc.top) / 300.0f,
-	//	-4.0f,
-	//	4.0f
-	//);
-
-
-	//cc.m_time = this->ticks;
-
-	/*cc.m_angle = m_angle + ((sin(m_angle / 10.0f) + (m_angle / 10.0f))) * 150.0f;
-
-	m_cb->update(GraphicsEngine::get()->getImmediateDeviceContext(), &cc);*/
-
-	//quad1.onRender(m_cb);
+	
 	
 }
 
@@ -179,6 +122,7 @@ void AppWindow::onDestroy()
 	for (int i = 0; i < cubeList.size(); i++) {
 		cubeList[i]->onDestroy();
 	}
+	cube1->onDestroy();
 	m_swap_chain->release();
 	GraphicsEngine::get()->release();
 }

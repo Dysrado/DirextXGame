@@ -36,6 +36,7 @@ Matrix4x4 SceneCameraHandler::getSceneCameraViewMatrix()
 SceneCameraHandler::SceneCameraHandler(int width, int height)
 {
 	sceneCamera = new Camera("Cam", width, height);
+	
 }
 
 SceneCameraHandler::~SceneCameraHandler()

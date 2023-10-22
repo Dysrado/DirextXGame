@@ -7,6 +7,10 @@ Camera::Camera(std::string name, int width, int height) : AGameObject(name)
 	this->width = width;
 	this->height = height;
 	InputSystem::getInstance()->addListener(this);
+	
+
+	this->SetPosition(0,0, -4.0f);
+	this->updateViewMatrix();
 }
 
 Camera::~Camera()
@@ -61,7 +65,7 @@ void Camera::onUpdate(float deltaTime)
 	float y = localPos.m_y;
 	float z = localPos.m_z;
 
-	float moveSpeed = 100.0f;
+	float moveSpeed = 1000.0f;
 
 	if (InputSystem::getInstance()->isKeyDown('W')) {
 		z += deltaTime * moveSpeed;
@@ -75,12 +79,23 @@ void Camera::onUpdate(float deltaTime)
 	}
 
 	else  if (InputSystem::getInstance()->isKeyDown('A')) {
-		x += deltaTime * moveSpeed;
+		x -= deltaTime * moveSpeed;
 		this->SetPosition(x, y, z);
 		this->updateViewMatrix();
 	}
 	else if (InputSystem::getInstance()->isKeyDown('D')) {
-		x -= deltaTime * moveSpeed;
+		x += deltaTime * moveSpeed;
+		this->SetPosition(x, y, z);
+		this->updateViewMatrix();
+	}
+
+	else  if (InputSystem::getInstance()->isKeyDown('Q')) {
+		y -= deltaTime * moveSpeed;
+		this->SetPosition(x, y, z);
+		this->updateViewMatrix();
+	}
+	else if (InputSystem::getInstance()->isKeyDown('E')) {
+		y += deltaTime * moveSpeed;
 		this->SetPosition(x, y, z);
 		this->updateViewMatrix();
 	}
@@ -100,10 +115,13 @@ void Camera::onKeyDown(int key)
 
 void Camera::onMouseMove(const Point deltaPos)
 {
+	float moveSpeed = 10.0f;
+	if (isDrag) {
+		localRotation.m_x -= deltaPos.getY() * EngineTime::getDeltaTime() * moveSpeed;
+		localRotation.m_y -= deltaPos.getX() * EngineTime::getDeltaTime() * moveSpeed;
+		this->updateViewMatrix();
+	}
 	
-	localRotation.m_x -= deltaPos.getY() * EngineTime::getDeltaTime();
-	localRotation.m_y -= deltaPos.getX() * EngineTime::getDeltaTime();
-	this->updateViewMatrix();
 
 	
 	//InputSystem::getInstance()->setCursorPosition(Point((int)(width / 2.0f), (int)(height / 2.0f)));
@@ -119,8 +137,10 @@ void Camera::onLeftMouseUp(const Point deltaPos)
 
 void Camera::onRightMouseDown(const Point deltaPos)
 {
+	isDrag = true;
 }
 
 void Camera::onRightMouseUp(const Point deltaPos)
 {
+	isDrag = false;
 }

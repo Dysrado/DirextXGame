@@ -15,6 +15,8 @@ private:
 	float speedFactor = 0.0f;
 	float deltaPos = 0.0f;
 	float speed = 10.0f;
+	bool isUpdating;
+	bool isReturning;
 
 	
 	

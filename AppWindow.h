@@ -28,6 +28,7 @@ public:
 private:
 	SwapChain* m_swap_chain;
 	std::vector<Cube*> cubeList;
+	Cube* cube1;
 	
 	ConstantBuffer* m_cb;
 	
@@ -37,6 +38,7 @@ private:
 
 	bool isForward = false;
 	bool isBackward = false;
+	
 
 
 	// Inherited via InputListener
