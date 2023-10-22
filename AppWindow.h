@@ -13,6 +13,9 @@
 #include "InputListener.h"
 #include "InputSystem.h"
 #include "SceneCameraHandler.h"
+#include "imgui.h"
+#include "imgui_impl_win32.h"
+#include "imgui_impl_dx11.h"
 
 
 class AppWindow : public Window, public InputListener
@@ -38,8 +41,9 @@ private:
 
 	bool isForward = false;
 	bool isBackward = false;
-	
-
+	bool show_demo_window;
+	bool isPaused = false;
+	ImVec4 clear_color = ImVec4(0.61f, 0.61f, 0.61f, 1.00f);
 
 	// Inherited via InputListener
 	virtual void onKeyUp(int key) override;

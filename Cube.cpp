@@ -6,30 +6,30 @@ Cube ::Cube (std::string name, void* shader_byte_code, size_t size_shader) : AGa
 	//isUpdating = true; //for animations
 	AGameObject::vertexCube vertex_list[] =
 	{
-		//// RAINBOW
-		//{Vector3D(-0.5f,-0.5f,-0.5f),    Vector3D(1,0,0),   Vector3D(1,0,0) },
-		//{Vector3D(-0.5f,0.5f,-0.5f),    Vector3D(1,1,0), Vector3D(1,1,0) },
-		//{ Vector3D(0.5f,0.5f,-0.5f),   Vector3D(1,1,0),  Vector3D(1,1,0) },
-		//{ Vector3D(0.5f,-0.5f,-0.5f),     Vector3D(1,0,0), Vector3D(1,0,0) },
-
-		////BACK FACE
-		//{ Vector3D(0.5f,-0.5f,0.5f),    Vector3D(0,1,0), Vector3D(0,1,0) },
-		//{ Vector3D(0.5f,0.5f,0.5f),    Vector3D(0,1,1), Vector3D(0,1,1) },
-		//{ Vector3D(-0.5f,0.5f,0.5f),   Vector3D(0,1,1),  Vector3D(0,1,1) },
-		//{ Vector3D(-0.5f,-0.5f,0.5f),     Vector3D(0,1,0), Vector3D(0,1,0) }
-
-
-		//White
-		{Vector3D(-0.5f,-0.5f,-0.5f),    Vector3D(1,1,1),   Vector3D(1,1,1) },
-		{Vector3D(-0.5f,0.5f,-0.5f),    Vector3D(1,1,1), Vector3D(1,1,1) },
-		{ Vector3D(0.5f,0.5f,-0.5f),   Vector3D(1,1,1),  Vector3D(1,1,1) },
-		{ Vector3D(0.5f,-0.5f,-0.5f),     Vector3D(1,1,1), Vector3D(1,1,1) },
+		// RAINBOW
+		{Vector3D(-0.5f,-0.5f,-0.5f),    Vector3D(1,0,0),   Vector3D(1,0,0) },
+		{Vector3D(-0.5f,0.5f,-0.5f),    Vector3D(1,1,0), Vector3D(1,1,0) },
+		{ Vector3D(0.5f,0.5f,-0.5f),   Vector3D(1,1,0),  Vector3D(1,1,0) },
+		{ Vector3D(0.5f,-0.5f,-0.5f),     Vector3D(1,0,0), Vector3D(1,0,0) },
 
 		//BACK FACE
-		{ Vector3D(0.5f,-0.5f,0.5f),    Vector3D(1,1,1), Vector3D(1,1,1) },
-		{ Vector3D(0.5f,0.5f,0.5f),    Vector3D(1,1,1), Vector3D(1,1,1) },
-		{ Vector3D(-0.5f,0.5f,0.5f),   Vector3D(1,1,1),  Vector3D(1,1,1) },
-		{ Vector3D(-0.5f,-0.5f,0.5f),     Vector3D(1,1,1), Vector3D(1,1,1) }
+		{ Vector3D(0.5f,-0.5f,0.5f),    Vector3D(0,1,0), Vector3D(0,1,0) },
+		{ Vector3D(0.5f,0.5f,0.5f),    Vector3D(0,1,1), Vector3D(0,1,1) },
+		{ Vector3D(-0.5f,0.5f,0.5f),   Vector3D(0,1,1),  Vector3D(0,1,1) },
+		{ Vector3D(-0.5f,-0.5f,0.5f),     Vector3D(0,1,0), Vector3D(0,1,0) }
+
+
+		////White
+		//{Vector3D(-0.5f,-0.5f,-0.5f),    Vector3D(1,1,1),   Vector3D(1,1,1) },
+		//{Vector3D(-0.5f,0.5f,-0.5f),    Vector3D(1,1,1), Vector3D(1,1,1) },
+		//{ Vector3D(0.5f,0.5f,-0.5f),   Vector3D(1,1,1),  Vector3D(1,1,1) },
+		//{ Vector3D(0.5f,-0.5f,-0.5f),     Vector3D(1,1,1), Vector3D(1,1,1) },
+
+		////BACK FACE
+		//{ Vector3D(0.5f,-0.5f,0.5f),    Vector3D(1,1,1), Vector3D(1,1,1) },
+		//{ Vector3D(0.5f,0.5f,0.5f),    Vector3D(1,1,1), Vector3D(1,1,1) },
+		//{ Vector3D(-0.5f,0.5f,0.5f),   Vector3D(1,1,1),  Vector3D(1,1,1) },
+		//{ Vector3D(-0.5f,-0.5f,0.5f),     Vector3D(1,1,1), Vector3D(1,1,1) }
 
 		////Plane
 		//{Vector3D(-0.5f,-0.5f,-0.5f),    Vector3D(0,0,1),   Vector3D(1,0,0) },
@@ -155,18 +155,28 @@ void Cube::onDestroy()
 
 void Cube::onUpdate(float deltaTime)
 {
-
 	Matrix4x4 temp;
 	cc.m_time += deltaTime * 20;
 	cc.worldMatrix.setScale(Vector3D(1.0f, 1.0f, 1.0f));
 	temp.setScale(localScale);
 	cc.worldMatrix *= temp;
+	
+	temp.setIdentity();
+	temp.setRotationZ(ticks);
+	cc.worldMatrix *= temp;
 
+	temp.setIdentity();
+	temp.setRotationY(ticks);
+	cc.worldMatrix *= temp;
+
+	temp.setIdentity();
+	temp.setRotationX(ticks);
+	cc.worldMatrix *= temp;
 
 	temp.setIdentity();
 	temp.setTranslation(localPosition);
 	cc.worldMatrix *= temp;
-	
+
 	////Implementation of Cube Scaling
 	//if (isUpdating) { 
 	//	Vector3D scale;
@@ -241,17 +251,7 @@ void Cube::onUpdate(float deltaTime)
 		}
 	}*/
 
-	temp.setIdentity();
-	temp.setRotationZ(ticks);
-	cc.worldMatrix *= temp;
-
-	temp.setIdentity();
-	temp.setRotationY(ticks);
-	cc.worldMatrix *= temp;
-
-	temp.setIdentity();
-	temp.setRotationX(ticks);
-	cc.worldMatrix *= temp;
+	
 
 
 
