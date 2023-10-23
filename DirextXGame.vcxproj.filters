@@ -55,6 +55,18 @@
     <Filter Include="imgui">
       <UniqueIdentifier>{745794e9-af45-473f-a559-4634d12466dc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="UIScreens">
+      <UniqueIdentifier>{fa226e09-e155-47ea-8c7d-2b7767cfaa36}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Managers">
+      <UniqueIdentifier>{a78604e4-b510-4f3b-b709-353fbb99f4d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Managers\UIManager">
+      <UniqueIdentifier>{863503c5-1b65-49f1-bfd6-7b2f33fcaa6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\Managers\GameObjectManager">
+      <UniqueIdentifier>{e45b8c65-aa9f-48ec-8232-952460cf1723}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -137,6 +149,27 @@
     </ClCompile>
     <ClCompile Include="imgui\imgui_widgets.cpp">
       <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="AUIScreen.cpp">
+      <Filter>GameEngine\Managers\UIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="UIManager.cpp">
+      <Filter>GameEngine\Managers\UIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuScreen.cpp">
+      <Filter>UIScreens</Filter>
+    </ClCompile>
+    <ClCompile Include="InspectorWindow.cpp">
+      <Filter>UIScreens</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneOutliner.cpp">
+      <Filter>UIScreens</Filter>
+    </ClCompile>
+    <ClCompile Include="EngineProfiler.cpp">
+      <Filter>UIScreens</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObjectManager.cpp">
+      <Filter>GameEngine\Managers\GameObjectManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +259,30 @@
     </ClInclude>
     <ClInclude Include="imgui\imconfig.h">
       <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="AUIScreen.h">
+      <Filter>GameEngine\Managers\UIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="UIManager.h">
+      <Filter>GameEngine\Managers\UIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="UINames.h">
+      <Filter>GameEngine\Managers\UIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuScreen.h">
+      <Filter>UIScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="InspectorWindow.h">
+      <Filter>UIScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneOutliner.h">
+      <Filter>UIScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="EngineProfiler.h">
+      <Filter>UIScreens</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObjectManager.h">
+      <Filter>GameEngine\Managers\GameObjectManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

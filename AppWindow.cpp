@@ -27,18 +27,19 @@ void AppWindow::onCreate()
 	RECT rc = this->getClientWindowRect();
 	SceneCameraHandler::initialize(rc.right - rc.left, rc.bottom - rc.top);
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
+	UIManager::initialize(m_hwnd);
 
-	// Setup Dear ImGui context
-	IMGUI_CHECKVERSION();
-	ImGui::CreateContext();
-	ImGuiIO& io = ImGui::GetIO();
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
-	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
-	//io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // IF using Docking Branch
+	//// Setup Dear ImGui context
+	//IMGUI_CHECKVERSION();
+	//ImGui::CreateContext();
+	//ImGuiIO& io = ImGui::GetIO();
+	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
+	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Enable Gamepad Controls
+	////io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // IF using Docking Branch
 
-	// Setup Platform/Renderer backends
-	ImGui_ImplWin32_Init(m_hwnd);
-	ImGui_ImplDX11_Init(GraphicsEngine::get()->getDirect3DDevice(),GraphicsEngine::get()->getImmediateDeviceContext()->getDeviceContext());
+	//// Setup Platform/Renderer backends
+	//ImGui_ImplWin32_Init(m_hwnd);
+	//ImGui_ImplDX11_Init(GraphicsEngine::get()->getDirect3DDevice(),GraphicsEngine::get()->getImmediateDeviceContext()->getDeviceContext());
 	//clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
 
@@ -74,7 +75,7 @@ void AppWindow::onCreate()
 	GraphicsEngine::get()->releaseCompiledShader();
 	int width = (this->getClientWindowRect().right - this->getClientWindowRect().left);
 	int height = (this->getClientWindowRect().bottom - this->getClientWindowRect().top);
-
+	
 	InputSystem::getInstance()->setCursorPosition(Point((int)(width / 2.0f), (int)(height / 2.0f)));
 
 }
@@ -85,39 +86,39 @@ void AppWindow::onUpdate()
 	InputSystem::getInstance()->update();
 	// (Your code process and dispatch Win32 messages)
 	// Start the Dear ImGui frame
-	ImGui_ImplDX11_NewFrame();
+	/*ImGui_ImplDX11_NewFrame();
 	ImGui_ImplWin32_NewFrame();
-	ImGui::NewFrame();
-	if (show_demo_window)
-		ImGui::ShowDemoWindow(&show_demo_window);
-	ImGui::Begin("Scene Settings", NULL, ImGuiWindowFlags_NoResize);
+	ImGui::NewFrame()*/;
+	//if (show_demo_window)
+	//	ImGui::ShowDemoWindow(&show_demo_window);
+	//ImGui::Begin("Scene Settings", NULL, ImGuiWindowFlags_NoResize);
 
-	
+	//
 
-	ImGui::Text("Below are settings for configuring the Scene");
-	ImGui::Checkbox("Show Demo Window", &show_demo_window);
+	//ImGui::Text("Below are settings for configuring the Scene");
+	//ImGui::Checkbox("Show Demo Window", &show_demo_window);
 
-	// Edit a color stored as 3
-	ImGui::ColorEdit3("clear color", (float*)&clear_color);
+	//// Edit a color stored as 3
+	//ImGui::ColorEdit3("clear color", (float*)&clear_color);
 
-	if (isPaused) {
-		if (ImGui::Button("Resume Animation")) {
-			isPaused = false;
-		}
-	}
+	//if (isPaused) {
+	//	if (ImGui::Button("Resume Animation")) {
+	//		isPaused = false;
+	//	}
+	//}
 
-	else if (!isPaused) {
-		if (ImGui::Button("Pause Animation")) {
-			isPaused = true;
-		}
-	}
+	//else if (!isPaused) {
+	//	if (ImGui::Button("Pause Animation")) {
+	//		isPaused = true;
+	//	}
+	//}
 	
 	float colors[4];
 	colors[0] = clear_color.x;
 	colors[1] = clear_color.y;
 	colors[2] = clear_color.z;
 	colors[3] = clear_color.w;
-	ImGui::End();
+	//ImGui::End();
 	//ImGui::ShowDemoWindow(); // Show demo window! :)
 	GraphicsEngine::get()->getImmediateDeviceContext()->clearRenderTargetColor(m_swap_chain,colors[0], colors[1], colors[2], colors[3]);
 
@@ -147,9 +148,9 @@ void AppWindow::onUpdate()
 
 	// Rendering
 	// (Your code clears your framebuffer, renders your other stuff etc.)
-	
-	ImGui::Render();
-	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
+	UIManager::getInstance()->drawAllUI();
+	/*ImGui::Render();
+	ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());*/
 	// (Your code calls swapchain's Present() function)
 	m_swap_chain->present(true);
 	
@@ -166,10 +167,8 @@ void AppWindow::onDestroy()
 	//cube1->onDestroy();
 	m_swap_chain->release();
 
-	ImGui_ImplDX11_Shutdown();
-	ImGui_ImplWin32_Shutdown();
-	ImGui::DestroyContext();
-
+	
+	UIManager::getInstance()->destroy();
 	InputSystem::getInstance()->destroy();
 	GraphicsEngine::get()->release();
 }

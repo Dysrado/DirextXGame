@@ -65,12 +65,13 @@ public:
 	void SetScale(float x, float y, float z);
 	void SetScale(Vector3D Scale);
 	Vector3D getLocalScale();
-
+	std::string getName();
 	
 	constant cc;
 	float ticks = 0.0f;
 	float speedFactor = 0.1f;
 	bool isIncreasing = true;
+	bool isActive = true;
 
 protected:
 	Matrix4x4 localMatrix;
