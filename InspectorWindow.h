@@ -6,7 +6,10 @@ class InspectorWindow :
 public:
     void drawUI() override;
 
+
     InspectorWindow(String name);
     ~InspectorWindow();
+
+    
 };
 

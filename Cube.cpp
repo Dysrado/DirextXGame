@@ -162,15 +162,15 @@ void Cube::onUpdate(float deltaTime)
 	cc.worldMatrix *= temp;
 	
 	temp.setIdentity();
-	temp.setRotationZ(ticks);
+	temp.setRotationZ(localRotation.m_z);
 	cc.worldMatrix *= temp;
 
 	temp.setIdentity();
-	temp.setRotationY(ticks);
+	temp.setRotationY(localRotation.m_y);
 	cc.worldMatrix *= temp;
 
 	temp.setIdentity();
-	temp.setRotationX(ticks);
+	temp.setRotationX(localRotation.m_x	);
 	cc.worldMatrix *= temp;
 
 	temp.setIdentity();

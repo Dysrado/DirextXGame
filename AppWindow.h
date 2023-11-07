@@ -14,6 +14,7 @@
 #include "InputSystem.h"
 #include "SceneCameraHandler.h"
 #include "UIManager.h"
+#include "GameObjectManager.h"
 
 
 class AppWindow : public Window, public InputListener
@@ -42,6 +43,7 @@ private:
 	bool show_demo_window;
 	bool isPaused = false;
 	ImVec4 clear_color = ImVec4(0.61f, 0.61f, 0.61f, 1.00f);
+
 
 	// Inherited via InputListener
 	virtual void onKeyUp(int key) override;

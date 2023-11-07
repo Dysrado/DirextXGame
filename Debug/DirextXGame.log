@@ -1,2 +1,15 @@
-﻿  EngineProfiler.cpp
+﻿  GameObjectManager.cpp
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\Matrix4x4.h(103,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\Matrix4x4.h(104,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\Matrix4x4.h(105,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\Matrix4x4.h(106,44): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\GameObjectManager.cpp(23,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\GameObjectManager.cpp(39,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\GameObjectManager.cpp(49,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\GameObjectManager.cpp(51,49): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\GameObjectManager.cpp(58,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\GameObjectManager.cpp(86,61): warning C4316: 'Cube': object allocated on the heap may not be aligned 16
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\GameObjectManager.cpp(96,61): warning C4316: 'Cube': object allocated on the heap may not be aligned 16
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\GameObjectManager.cpp(98,30): warning C4305: 'argument': truncation from 'double' to 'float'
+C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\GameObjectManager.cpp(117,20): warning C4018: '<': signed/unsigned mismatch
   DirextXGame.vcxproj -> C:\Users\DysComfy\Repositories\Game Engine\DirextXGame\Debug\DirextXGame.exe

@@ -1,5 +1,6 @@
 #pragma once
 #include "AUIScreen.h"
+#include "GameObjectManager.h"
 class MenuScreen :
     public AUIScreen
 {

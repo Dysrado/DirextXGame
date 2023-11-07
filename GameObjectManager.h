@@ -3,6 +3,7 @@
 #include <vector>
 #include "AGameObject.h"
 #include <unordered_map>
+#include "Cube.h"
 class GameObjectManager
 {
 public:
@@ -41,6 +42,7 @@ private:
 
 	List objList;
 	HashTable objTable;
+	AGameObject* selectedObject = nullptr;
 	
 };
 

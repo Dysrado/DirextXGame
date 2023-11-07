@@ -28,6 +28,7 @@ void AppWindow::onCreate()
 	SceneCameraHandler::initialize(rc.right - rc.left, rc.bottom - rc.top);
 	m_swap_chain->init(this->m_hwnd, rc.right - rc.left, rc.bottom - rc.top);
 	UIManager::initialize(m_hwnd);
+	GameObjectManager::initialize();
 
 	//// Setup Dear ImGui context
 	//IMGUI_CHECKVERSION();
@@ -48,24 +49,24 @@ void AppWindow::onCreate()
 	GraphicsEngine::get()->compileVertexShader(L"VertexShader.hlsl", "vsmain", &shader_byte_code, &size_shader);
 	m_vs = GraphicsEngine::get()->createVertexShader(shader_byte_code, size_shader);
 
-	for (int i = 0; i < 50; i++) {
-		
-		Cube* cube;
-		cube = new Cube("Cube " + i, shader_byte_code, size_shader);
-		cube->setAnimSpeed(10);
-		cube->SetScale(Vector3D(1,1,1));
-		
-		//cube->SetPosition(Vector3D(1,1,0));
-		cube->SetPosition(distfloat(rd), distfloat(rd), distfloat(rd));
-		cubeList.push_back(cube);
-	}
+	//for (int i = 0; i < 50; i++) {
+	//	
+	//	Cube* cube;
+	//	cube = new Cube("Cube " + i, shader_byte_code, size_shader);
+	//	cube->setAnimSpeed(10);
+	//	cube->SetScale(Vector3D(1,1,1));
+	//	
+	//	//cube->SetPosition(Vector3D(1,1,0));
+	//	cube->SetPosition(distfloat(rd), distfloat(rd), distfloat(rd));
+	//	cubeList.push_back(cube);
+	//}
 
-	
-	
-	/*cube1 = new Cube("Plane", shader_byte_code, size_shader);
-	cube1->setAnimSpeed(0);
-	cube1->SetScale(Vector3D(6, 0.1, 6));
-	cube1->SetPosition(Vector3D(0, 0, 0));*/
+	//
+	//
+	//cube1 = new Cube("Plane", shader_byte_code, size_shader);
+	//cube1->setAnimSpeed(0);
+	//cube1->SetScale(Vector3D(6, 0.1, 6));
+	//cube1->SetPosition(Vector3D(0, 0, 0));
 	//isForward = true;
 	GraphicsEngine::get()->releaseCompiledShader();
 	
@@ -128,15 +129,16 @@ void AppWindow::onUpdate()
 	SceneCameraHandler::getInstance()->update();
 
 	
-	
+	GameObjectManager::getInstance()->updateAll();
+	GameObjectManager::getInstance()->renderAll(rc.right - rc.left, rc.bottom - rc.top, m_vs, m_ps);
 
-	for (int i = 0; i < cubeList.size(); i++) {
+	/*for (int i = 0; i < cubeList.size(); i++) {
 		if (!isPaused) {
 			cubeList[i]->addMovement(1, EngineTime::getDeltaTime());
 		}
 		cubeList[i]->onUpdate(EngineTime::getDeltaTime());
 		cubeList[i]->onRender(rc.right - rc.left, rc.bottom - rc.top, m_vs, m_ps);
-	}
+	}*/
 
 	
 	//cube1->onUpdate(EngineTime::getDeltaTime());
