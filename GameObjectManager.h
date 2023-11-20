@@ -4,6 +4,9 @@
 #include "AGameObject.h"
 #include <unordered_map>
 #include "Cube.h"
+#include "PhysicsComponent.h"
+#include <random>   
+
 class GameObjectManager
 {
 public:
@@ -14,7 +17,9 @@ public:
 	enum PrimitiveType {
 		CUBE,
 		PLANE,
-		SPHERE
+		SPHERE,
+		PHYSICS_CUBE,
+		PHYSICS_PLANE
 	};
 
 	static GameObjectManager* getInstance();

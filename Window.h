@@ -1,5 +1,6 @@
 
 #pragma once
+#define NOMINAX
 #include <Windows.h>
 #include "EngineTime.h"
 

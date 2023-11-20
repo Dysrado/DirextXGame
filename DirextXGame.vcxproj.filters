@@ -16,9 +16,6 @@
     <Filter Include="GameEngine\GraphicsEngine\SwapChain">
       <UniqueIdentifier>{8b4f285f-261d-48f7-8805-0c837b30aeea}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameEngine\GraphicsEngine\DeviceContext">
-      <UniqueIdentifier>{107b421d-1ece-4858-be4a-47b5183b214d}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameEngine\GraphicsEngine\VertexBuffer">
       <UniqueIdentifier>{705bd7cb-cd73-42f4-9404-346504ec018b}</UniqueIdentifier>
     </Filter>
@@ -67,6 +64,12 @@
     <Filter Include="GameEngine\Managers\GameObjectManager">
       <UniqueIdentifier>{e45b8c65-aa9f-48ec-8232-952460cf1723}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\PhysicsEngine">
+      <UniqueIdentifier>{88c0357a-c48e-4d92-ba25-1452c03b2a9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameEngine\GraphicsEngine\PhysicsEngine\DeviceContext">
+      <UniqueIdentifier>{107b421d-1ece-4858-be4a-47b5183b214d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -85,7 +88,7 @@
       <Filter>GameEngine\GraphicsEngine\SwapChain</Filter>
     </ClCompile>
     <ClCompile Include="DeviceContext.cpp">
-      <Filter>GameEngine\GraphicsEngine\DeviceContext</Filter>
+      <Filter>GameEngine\GraphicsEngine\PhysicsEngine\DeviceContext</Filter>
     </ClCompile>
     <ClCompile Include="VertexBuffer.cpp">
       <Filter>GameEngine\GraphicsEngine\VertexBuffer</Filter>
@@ -171,6 +174,18 @@
     <ClCompile Include="GameObjectManager.cpp">
       <Filter>GameEngine\Managers\GameObjectManager</Filter>
     </ClCompile>
+    <ClCompile Include="PhysicsSystem.cpp">
+      <Filter>GameEngine\GraphicsEngine\PhysicsEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="AComponent.cpp">
+      <Filter>GameEngine\GraphicsEngine\PhysicsEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseComponentSystem.cpp">
+      <Filter>GameEngine\GraphicsEngine\PhysicsEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsComponent.cpp">
+      <Filter>GameEngine\GraphicsEngine\PhysicsEngine</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Window.h">
@@ -186,7 +201,7 @@
       <Filter>GameEngine\GraphicsEngine\SwapChain</Filter>
     </ClInclude>
     <ClInclude Include="DeviceContext.h">
-      <Filter>GameEngine\GraphicsEngine\DeviceContext</Filter>
+      <Filter>GameEngine\GraphicsEngine\PhysicsEngine\DeviceContext</Filter>
     </ClInclude>
     <ClInclude Include="VertexBuffer.h">
       <Filter>GameEngine\GraphicsEngine\VertexBuffer</Filter>
@@ -283,6 +298,18 @@
     </ClInclude>
     <ClInclude Include="GameObjectManager.h">
       <Filter>GameEngine\Managers\GameObjectManager</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsSystem.h">
+      <Filter>GameEngine\GraphicsEngine\PhysicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="AComponent.h">
+      <Filter>GameEngine\GraphicsEngine\PhysicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseComponentSystem.h">
+      <Filter>GameEngine\GraphicsEngine\PhysicsEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsComponent.h">
+      <Filter>GameEngine\GraphicsEngine\PhysicsEngine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

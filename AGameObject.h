@@ -10,6 +10,9 @@
 #include <math.h>
 #include "Matrix4x4.h"
 #include <string>
+#include "AComponent.h"
+#include <unordered_map>
+#include <vector>
 
 class AGameObject
 {
@@ -62,6 +65,16 @@ public:
 	void SetRotation(Vector3D rot);
 	Vector3D getLocalRotation();
 
+	void attachComponent(AComponent* component);
+	void detachComponent(AComponent* component);
+
+	AComponent* findComponentByName(std::string name);
+	AComponent* findComponentofType(AComponent::ComponentType type, std::string name);
+
+	void recomputeMatrix(float matrix[16]);
+
+	float* getPhysicsLocalMatrix();
+
 	void SetScale(float x, float y, float z);
 	void SetScale(Vector3D Scale);
 	Vector3D getLocalScale();
@@ -72,6 +85,7 @@ public:
 	float speedFactor = 0.1f;
 	bool isIncreasing = true;
 	bool isActive = true;
+	bool isStatic = false;
 
 protected:
 	Matrix4x4 localMatrix;
@@ -79,6 +93,9 @@ protected:
 	Vector3D localRotation;
 	Vector3D localPosition;
 	Vector3D localScale;
+	std::vector<AComponent*> componentList;
+	std::unordered_map<std::string, AComponent*> componentTable;
 	
+
 };
 

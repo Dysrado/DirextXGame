@@ -37,26 +37,40 @@ public:
 
 	void setRotationX(float x)
 	{
-		m_mat[1][1] = cos(x);
-		m_mat[1][2] = sin(x);
-		m_mat[2][1] = -sin(x);
-		m_mat[2][2] = cos(x);
+		const float x_rad = x * 3.14f / 180.0f;
+		this->setIdentity();
+		this->m_mat[1][1] = cos(x_rad);
+		this->m_mat[1][2] = sin(x_rad);
+		this->m_mat[2][1] = -sin(x_rad);
+		this->m_mat[2][2] = cos(x_rad);
 	}
 
+	/**
+	 * \brief
+	 * \param y Euler Angle rotation of y-axis
+	 */
 	void setRotationY(float y)
 	{
-		m_mat[0][0] = cos(y);
-		m_mat[0][2] = -sin(y);
-		m_mat[2][0] = sin(y);
-		m_mat[2][2] = cos(y);
+		const float y_rad = y * 3.14f / 180.0f;
+		this->setIdentity();
+		this->m_mat[0][0] = cos(y_rad);
+		this->m_mat[0][2] = -sin(y_rad);
+		this->m_mat[2][0] = sin(y_rad);
+		this->m_mat[2][2] = cos(y_rad);
 	}
 
+	/**
+	 * \brief
+	 * \param z Euler Angle rotation of z-axis
+	 */
 	void setRotationZ(float z)
 	{
-		m_mat[0][0] = cos(z);
-		m_mat[0][1] = sin(z);
-		m_mat[1][0] = -sin(z);
-		m_mat[1][1] = cos(z);
+		const float z_rad = z * 3.14f / 180.0f;
+		this->setIdentity();
+		this->m_mat[0][0] = cos(z_rad);
+		this->m_mat[0][1] = sin(z_rad);
+		this->m_mat[1][0] = -sin(z_rad);
+		this->m_mat[1][1] = cos(z_rad);
 	}
 
 	float getDeterminant()
@@ -73,6 +87,26 @@ public:
 		det = -(this->m_mat[0][3] * minor.m_x + this->m_mat[1][3] * minor.m_y + this->m_mat[2][3] * minor.m_z +
 			this->m_mat[3][3] * minor.m_w);
 		return det;
+	}
+
+	float* getMatrix()
+	{
+		//re-arrange to be compatible with react physics
+		return *this->m_mat; // can be read as float [16]
+	}
+
+	Matrix4x4 multiplyTo(Matrix4x4 matrix)
+	{
+		Matrix4x4 out;
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				out.m_mat[i][j] =
+					this->m_mat[i][0] * matrix.m_mat[0][j] + this->m_mat[i][1] * matrix.m_mat[1][j] +
+					this->m_mat[i][2] * matrix.m_mat[2][j] + this->m_mat[i][3] * matrix.m_mat[3][j];
+			}
+		}
+
+		return out;
 	}
 
 	void inverse()

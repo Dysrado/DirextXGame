@@ -14,6 +14,7 @@ void GameObjectManager::initialize()
 
 void GameObjectManager::destroy()
 {
+
 	sharedInstance->objList.clear();
 	sharedInstance->objTable.clear();
 }
@@ -81,31 +82,65 @@ void GameObjectManager::createObject(PrimitiveType type, void* shaderByteCode, s
 {
 	switch (type)
 	{
-	case PrimitiveType::CUBE:
-	{
-		Cube* cube = new Cube("Cube ", shaderByteCode, sizeShader);
-		cube->setAnimSpeed(10);
-		cube->SetScale(Vector3D(1, 1, 1));
-		cube->SetPosition(Vector3D(0, 0, 0));
+		case PrimitiveType::CUBE:
+		{
+			Cube* cube = new Cube("Cube ", shaderByteCode, sizeShader);
+			cube->setAnimSpeed(10);
+			cube->SetScale(Vector3D(1, 1, 1));
+			cube->SetPosition(Vector3D(0, 0, 0));
 
-		addObject((AGameObject*)cube);
-	}
-	break;
-	case PrimitiveType::PLANE:
-	{
-		Cube* cube = new Cube("Plane", shaderByteCode, sizeShader);
-		cube->setAnimSpeed(0);
-		cube->SetScale(Vector3D(6, 0.001, 6));
-		cube->SetPosition(Vector3D(0, 0, 0));
-		addObject((AGameObject*)cube);
-	}
-	break;
+			addObject((AGameObject*)cube);
+		}
+		break;
+		case PrimitiveType::PLANE:
+		{
+			Cube* cube = new Cube("Plane", shaderByteCode, sizeShader);
+			cube->setAnimSpeed(0);
+			cube->SetScale(Vector3D(6, 0.001, 6));
+			cube->SetPosition(Vector3D(0, 0, 0));
+			addObject((AGameObject*)cube);
+		}
+		break;
 
-	case PrimitiveType::SPHERE:
-	{
-	}
-	break;
+		case PrimitiveType::SPHERE:
+		{
+		}
+		break;
+		
+		case PrimitiveType::PHYSICS_CUBE:
+		{
+			std::random_device rd;
+			std::uniform_int_distribution<int> dist(1, 2);
+			for (int i = 0; i < 10; i++) {
+				
+				Cube* cube = new Cube("Cube ", shaderByteCode, sizeShader);
+				cube->setAnimSpeed(1000);
+				cube->SetScale(Vector3D(1, 1, 1));
+				cube->SetPosition(Vector3D(dist(rd), 1, dist(rd)));
+				addObject((AGameObject*)cube);
+				PhysicsComponent* physicsComponent = new PhysicsComponent("Physics Component", cube);
+				cube->attachComponent(physicsComponent);
+			}
+			
+			
+		}
+		break;
 
+		case PrimitiveType::PHYSICS_PLANE:
+		{
+			Cube* cube = new Cube("Plane", shaderByteCode, sizeShader);
+			cube->setAnimSpeed(0);
+			cube->SetScale(Vector3D(20, 0.001f, 20));
+			cube->SetPosition(Vector3D(0, -3, 0));
+			cube->isStatic = true;
+			addObject(cube);
+			
+			PhysicsComponent* physicsComponent = new PhysicsComponent("Physics Component", cube);
+			physicsComponent->getRigidBody()->setType(BodyType::STATIC);
+			cube->attachComponent(physicsComponent);
+			
+		}
+		break;
 	}
 }
 

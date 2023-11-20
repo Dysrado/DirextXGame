@@ -15,6 +15,11 @@
 #include "SceneCameraHandler.h"
 #include "UIManager.h"
 #include "GameObjectManager.h"
+#include <reactphysics3d/reactphysics3d.h>
+
+#include "PhysicsSystem.h"
+#include "BaseComponentSystem.h"
+using namespace reactphysics3d;
 
 
 class AppWindow : public Window, public InputListener
